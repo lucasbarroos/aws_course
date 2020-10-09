@@ -15,7 +15,6 @@ provider:
   iamRoleStatements:
     - ${file(iam/AuctionsTable.yml):AuctionsTableIAM}
 
-
 resources:
   Resources:
     AuctionsTable: ${file(resources/AuctionsTable.yml):AuctionsTable}
@@ -40,6 +39,13 @@ functions:
       - http:
           method: GET
           path: /auction/{id}
+
+  placeBid: 
+    handler: src/handlers/placeBid.handler
+    events:
+      - http:
+          method: PATCH
+          patch: auction/{id}/bid
 
 custom: 
   AuctionsTable: 
