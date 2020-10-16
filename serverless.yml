@@ -45,7 +45,7 @@ functions:
     events:
       - http:
           method: PATCH
-          patch: auction/{id}/bid
+          path: auction/{id}/bid
 
 custom: 
   AuctionsTable: 
