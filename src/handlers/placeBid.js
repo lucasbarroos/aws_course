@@ -15,6 +15,10 @@ async function placeBid(event, context) {
         throw new createError.Forbidden(`Your bid must be higher than ${auction.highestBid.amount}`);
     }
 
+    if (auction.status !== 'OPEN') {
+        throw new createError.Forbidden('Your cannout bid on closed auctions');
+    }
+
     const params = {
         TableName: process.env.AUCTIONS_TABLE_NAME,
         Key: { id },
